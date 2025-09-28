@@ -20,9 +20,13 @@ config/icon="res://icon.svg"
 NodeSignal="*res://scripts/global/NodeSignal.gd"
 GlobalResourceLoader="*res://scripts/global/ResourceLoader.gd"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
