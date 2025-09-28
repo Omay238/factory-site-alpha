@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Machine" load_steps=7 format=3 uid="uid://b3itcjyqa2g85"]
+
+[ext_resource type="Script" uid="uid://cds8ic7kx6t22" path="res://scripts/global/CostItem.gd" id="1_rffso"]
+[ext_resource type="Script" uid="uid://dgbw4cly2e22e" path="res://scripts/global/PointID.gd" id="2_jfcok"]
+[ext_resource type="Script" uid="uid://cb3yxm4e5tj06" path="res://scripts/global/MachineType.gd" id="3_egw7v"]
+[ext_resource type="Texture2D" uid="uid://bb4q67kcaa075" path="res://assets/machines/presser.svg" id="4_jfcok"]
+
+[sub_resource type="Resource" id="Resource_jfcok"]
+script = ExtResource("2_jfcok")
+position = Vector2(-128, 0)
+metadata/_custom_type_script = "uid://dgbw4cly2e22e"
+
+[sub_resource type="Resource" id="Resource_egw7v"]
+script = ExtResource("2_jfcok")
+position = Vector2(128, 0)
+type = 1
+metadata/_custom_type_script = "uid://dgbw4cly2e22e"
+
+[resource]
+script = ExtResource("3_egw7v")
+texture = ExtResource("4_jfcok")
+nodes = Array[ExtResource("2_jfcok")]([SubResource("Resource_jfcok"), SubResource("Resource_egw7v")])
+name = "Presser"
+id = 1
+power = 5
+metadata/_custom_type_script = "uid://cb3yxm4e5tj06"

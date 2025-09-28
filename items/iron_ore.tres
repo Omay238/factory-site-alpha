@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://viiw3jcejrt8"]
+
+[ext_resource type="Script" uid="uid://cds8ic7kx6t22" path="res://scripts/global/CostItem.gd" id="1_ri5q5"]
+[ext_resource type="Script" uid="uid://dbcqscvan3d76" path="res://scripts/global/ItemType.gd" id="1_vgbwb"]
+[ext_resource type="Texture2D" uid="uid://shxwo1qapmvp" path="res://assets/items/iron_ore.svg" id="2_gw6dp"]
+
+[resource]
+script = ExtResource("1_vgbwb")
+icon = ExtResource("2_gw6dp")
+name = "Iron Ore"
+production = 1
+speed = 60
+metadata/_custom_type_script = "uid://dbcqscvan3d76"

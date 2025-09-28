@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxl3fvn8x8i3x"]
+
+[ext_resource type="Script" uid="uid://c0kbdxwvm2cn" path="res://scripts/machines/machine.gd" id="1_6a4ke"]
+[ext_resource type="Texture2D" uid="uid://dhkh3okq7mf5w" path="res://assets/machines/miner1.svg" id="2_q015e"]
+
+[node name="Machine" type="Node2D"]
+script = ExtResource("1_6a4ke")
+
+[node name="Nodes" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q015e")
+
+[node name="MachineScript" type="Node" parent="."]

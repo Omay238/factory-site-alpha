@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bur844d832qu7"]
+
+[ext_resource type="Texture2D" uid="uid://cql0a6byhe4yb" path="res://assets/floor.svg" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://c5r85c1dvyowi" path="res://scenes/cam.tscn" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://dhkh3okq7mf5w" path="res://assets/machines/miner1.svg" id="3_sugp2"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -8192.0
+offset_top = -8192.0
+offset_right = 253952.0
+offset_bottom = 253952.0
+texture = ExtResource("1_o5qli")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="Cam" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="Miner1" type="Sprite2D" parent="."]
+position = Vector2(128, 128)
+texture = ExtResource("3_sugp2")

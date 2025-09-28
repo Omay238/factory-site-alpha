@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Machine" load_steps=7 format=3 uid="uid://o1h6c2jouboe"]
+
+[ext_resource type="Script" uid="uid://cds8ic7kx6t22" path="res://scripts/global/CostItem.gd" id="1_4x3v8"]
+[ext_resource type="Script" uid="uid://cb3yxm4e5tj06" path="res://scripts/global/MachineType.gd" id="1_awohu"]
+[ext_resource type="Script" uid="uid://dgbw4cly2e22e" path="res://scripts/global/PointID.gd" id="2_j27jd"]
+[ext_resource type="Script" uid="uid://bo3su5fw03aep" path="res://scripts/machines/miner1.gd" id="2_obnwm"]
+[ext_resource type="Texture2D" uid="uid://dhkh3okq7mf5w" path="res://assets/machines/miner1.svg" id="2_qh8bf"]
+
+[sub_resource type="Resource" id="Resource_4x3v8"]
+script = ExtResource("2_j27jd")
+position = Vector2(0, -256)
+type = 1
+metadata/_custom_type_script = "uid://dgbw4cly2e22e"
+
+[resource]
+script = ExtResource("1_awohu")
+texture = ExtResource("2_qh8bf")
+nodes = Array[ExtResource("2_j27jd")]([SubResource("Resource_4x3v8")])
+name = "Miner"
+power = 10
+machine_script = ExtResource("2_obnwm")
+metadata/_custom_type_script = "uid://cb3yxm4e5tj06"

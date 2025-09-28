@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://yvbqqkq0wd7o"]
+
+[ext_resource type="PackedScene" uid="uid://bxl3fvn8x8i3x" path="res://machine.tscn" id="1_28qa7"]
+
+[node name="PathTest" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 325)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Machine" parent="." instance=ExtResource("1_28qa7")]
+position = Vector2(851, 347)
+
+[node name="Machine2" parent="." instance=ExtResource("1_28qa7")]
+position = Vector2(214, 345)
+id = 1

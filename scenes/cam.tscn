@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5r85c1dvyowi"]
+
+[ext_resource type="Script" uid="uid://c6h0hfwhjp37i" path="res://scripts/cam.gd" id="1_m73v5"]
+
+[node name="Cam" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
+script = ExtResource("1_m73v5")
+movement_speed = 32.0
