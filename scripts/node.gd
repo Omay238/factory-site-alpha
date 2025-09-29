@@ -62,7 +62,7 @@ func _input(event: InputEvent) -> void:
 			_update_texture()
 
 func _process(_delta: float) -> void:
-	line_el.clear_points()
+	#line_el.clear_points()
 	if is_node_connected:
 		line = PackedVector2Array()
 		line.append(Vector2.ZERO)
