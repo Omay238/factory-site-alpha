@@ -7,7 +7,7 @@ var node: String
 
 var prev_dir := 0
 
-signal send_item(item: int, quantity: int)
+signal send_item(item: CostItem)
 
 var line: PackedVector2Array
 
@@ -18,6 +18,8 @@ var line: PackedVector2Array
 
 var is_searching = false
 var is_last_searching = false
+var is_node_connected = false
+var partner_node: Node2D
 
 func _ready() -> void:
 	var f := FileAccess.open("res://assets/node.svg", FileAccess.READ)
@@ -52,16 +54,37 @@ func _input(event: InputEvent) -> void:
 			is_searching = true
 			NodeSignal.begin_search.emit(type)
 		elif is_searching:
-			NodeSignal.cancel_search.emit(send_item)
+			NodeSignal.cancel_search.emit(send_item, tree_exiting)
 	if event is InputEventMouseMotion:
 		if sprite.get_rect().has_point(to_local(event.position)):
 			_update_texture(18)
 		else:
 			_update_texture()
 
-func _process(delta: float) -> void:
-	line = PackedVector2Array()
+func _process(_delta: float) -> void:
+	line_el.clear_points()
+	if is_node_connected:
+		line = PackedVector2Array()
+		line.append(Vector2.ZERO)
+		var mouse = to_local(partner_node.global_position)
+		var mousea = mouse.abs()
+		
+		if mousea.x < 15 and mousea.y > 15:
+			prev_dir = 1
+		elif mousea.y < 15 and mousea.x > 15:
+			prev_dir = 0
+		
+		if prev_dir == 0:
+			line.append(Vector2(mouse.x * 0.5, 0))
+			line.append(Vector2(mouse.x * 0.5, mouse.y))
+		elif prev_dir == 1:
+			line.append(Vector2(0, mouse.y * 0.5))
+			line.append(Vector2(mouse.x, mouse.y * 0.5))
+		
+		line.append(mouse)
+		line_el.points = line
 	if is_searching:
+		line = PackedVector2Array()
 		line.append(Vector2.ZERO)
 		var mouse = get_local_mouse_position()
 		var mousea = mouse.abs()
@@ -79,8 +102,7 @@ func _process(delta: float) -> void:
 			line.append(Vector2(mouse.x, mouse.y * 0.5))
 		
 		line.append(mouse)
-	
-	line_el.points = line
+		line_el.points = line
 
 func _on_begin_search(t: int):
 	print('begin, ' + str(is_searching))
@@ -88,21 +110,27 @@ func _on_begin_search(t: int):
 		sprite.modulate.a = 0.5
 	is_last_searching = false
 
-func _on_cancel_search(sig: Signal):
+func _on_cancel_search(signal_send: Signal, signal_remove: Signal):
 	print('cancel')
 	if sprite.get_rect().has_point(get_local_mouse_position()) and sprite.modulate.a == 1:
 		NodeSignal.successful_search.emit(self)
-		sig.connect($"../MachineScript"._recieve_item)
+		signal_send.connect(Callable($"../../ActiveMachine", "_recieve_item"))
+		signal_remove.connect(Callable(line_el, "clear_points"))
 	sprite.modulate.a = 1
 	is_searching = false
 	is_last_searching = true
 
 func _on_successful_search(other: Node2D):
 	print('success')
+	if other.get_parent() == get_parent():
+		return
 	if is_searching and type == 0:
 		send_item.connect(other._recieve_item)
+		is_node_connected = true
+		partner_node = other
 	elif is_searching and type == 1:
 		other.send_item.connect(_recieve_item)
+		is_node_connected = true
 
-func _recieve_item(item: int, quantity: int):
+func _recieve_item(item: CostItem):
 	pass

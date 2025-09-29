@@ -10,7 +10,7 @@ func _update_machine():
 		$Nodes.remove_child(i)
 	
 	$Sprite2D.texture = machine.texture
-	$MachineScript.set_script(machine.machine_script)
+	$ActiveMachine.set_script(machine.machine_script)
 	
 	for i in machine.nodes:
 		var node = load("res://io_node.tscn").instantiate()
@@ -20,3 +20,8 @@ func _update_machine():
 
 func _ready():
 	_update_machine()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if $Sprite2D.get_rect().has_point(to_local(event.position)):
+			queue_free()
